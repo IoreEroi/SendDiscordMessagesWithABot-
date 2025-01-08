@@ -22,10 +22,10 @@ def send_message_to_discord(token, channel_id, message):
     response = requests.post(url, headers=headers, json=payload)
     
     if response.status_code == 200:
-        print(f"Messaggio inviato con successo al canale {channel_id}")
+        print(f"Message successfully sent to channel {channel_id}")
         save_message(message)
     else:
-        print(f"Errore nell'invio del messaggio al canale {channel_id}: {response.status_code}")
+        print(f"Error sending message to channel {channel_id}: {response.status_code}")
         print(response.json())
 
 def save_message(message):
@@ -40,12 +40,13 @@ def load_messages():
         return []
 
 if __name__ == '__main__':
+
     config = load_config()
     servers = config['servers']
     
-    interval = 30  # Intervallo di tempo fisso di 30 secondi
+    interval = 30  # Fixed time interval of 30 seconds
     
-    message = input("Inserisci il messaggio da inviare a Discord: ")
+    message = input("Enter the message to send to Discord: ")
     
     while True:
         for server in servers.values():
